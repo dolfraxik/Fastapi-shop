@@ -1,10 +1,10 @@
-from sqlalchemy.orm import Mapped, mapped_column, relationship
+from sqlalchemy.orm import Mapped, mapped_column, relationship # type: ignore
 from database import Base
 
 class Category(Base):
     __tablename__ = 'categories'
 
-    id: Mapped[int] = mapped_column(primary_key=True,index= True)
+    id_category: Mapped[int] = mapped_column(primary_key=True,index= True)
     name: Mapped[str] = mapped_column(unique=True,nullable=False, index = True)
     slug: Mapped[str] = mapped_column(unique=True,nullable=False, index = True)
 

@@ -1,6 +1,6 @@
 import datetime
 from sqlalchemy.orm import Mapped, mapped_column, relationship # type: ignore
-from database import Base
+from ..database import Base
 from sqlalchemy import DateTime ,ForeignKey# type: ignore
 class Product(Base):
     __tablename__ = 'products'

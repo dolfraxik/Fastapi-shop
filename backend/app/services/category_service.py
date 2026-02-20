@@ -4,7 +4,7 @@ from ..repositories.category_repository import CategoryRepository
 from ..schemas.category import CategoryResponse, CategoryCreate
 from fastapi import HTTPException, status # type: ignore
 
-class CategoryServices:
+class CategoryService:
     def __init__(self, db: Session):
         self.repository = CategoryRepository(db)
 
@@ -12,13 +12,12 @@ class CategoryServices:
         categories = self.repository.get_all()
         return [CategoryResponse.model_validate(cat) for cat in categories]
     
-    def get_by_id_category(self, category_id: int) -> CategoryRepository:
+    def get_by_id_category(self, category_id: int) -> CategoryResponse:
         category = self.repository.get_by_id(category_id)
         if not category:
-            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f'Not found {category_id}')
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Category not found")
         return CategoryResponse.model_validate(category)
     
-    def create_category(self,category_data: CategoryCreate)-> CategoryResponse:
-        create_category = self.reposirory.create(category_data)
-        return CategoryResponse.model_validate(create_category)
-       
+    def create_category(self, category_data: CategoryCreate) -> CategoryResponse:
+        new_cat = self.repository.create(category_data)
+        return CategoryResponse.model_validate(new_cat)

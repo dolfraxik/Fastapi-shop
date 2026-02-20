@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, status # type: ignore
 from sqlalchemy.orm import Session # type: ignore
 from typing import List
 from ..database import get_db
-from ..services.product_service import ProductService # type: ignore
+from ..services.product_service import ProductService  
 from ..schemas.product import ProductResponse, ProductListResponse
 
 router = APIRouter(
@@ -15,7 +15,7 @@ async def get_products(session: Session = Depends(get_db)):
     service = ProductService(session)
     return service.get_all_product(session)
 
-@router.get('{product_id}', response_model=ProductResponse, status_code=status.HTTP_200_Ok)
+@router.get('/{product_id}', response_model=ProductResponse, status_code=status.HTTP_200_OK)
 async def get_by_id(product_id: int,session: Session = Depends(get_db)):
     service = ProductService( session)
     return service.get_product_by_id(product_id)

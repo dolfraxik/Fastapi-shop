@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Mapped, mapped_column, relationship # type: ignore
-from database import Base
+from ..database import Base
 
 class Category(Base):
     __tablename__ = 'categories'

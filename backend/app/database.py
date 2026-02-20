@@ -22,5 +22,5 @@ def get_db():
     finally:
         db.close()
 
-def create_db_and_tables():
+def init_db():
     Base.metadata.create_all(bind=engine)

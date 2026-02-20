@@ -1,21 +1,19 @@
 from pydantic import BaseModel, Field # type: ignore
 from typing import Optional
 
-# Базовая модель для элемента корзины
 class CartItemBase(BaseModel):
     product_id: int = Field(..., description="Product ID")
     quantity: int = Field(..., gt=0, description="Quantity (must be greater than 0)")
 
-# Схема для добавления товара (наследует базу)
+
 class CartItemCreate(CartItemBase):
     pass
 
-# Схема для обновления количества товара
+
 class CartItemUpdate(BaseModel):
     product_id: int = Field(..., description="Product ID")
     quantity: int = Field(..., gt=0, description="New quantity (must be greater than 0)")
 
-# Схема для отображения товара в корзине (с полной информацией)
 class CartItem(BaseModel):
     product_id: int
     name: str = Field(..., description="Product name")

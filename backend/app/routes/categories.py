@@ -15,7 +15,7 @@ async def get_categories(session: Session = Depends(get_db)):
     service = CategoryService(session)
     return service.get_all_categories(session)
 
-@router.get('{category_id}', response_model=CategoryResponse, status=status.HTTP_200_Ok)
+@router.get('/{category_id}', response_model=CategoryResponse, status_code=status.HTTP_200_OK)
 async def get_by_id( category_id: int,session: Session = Depends(get_db)):
     service = CategoryService( session)
     return service.get_category_by_id(category_id)

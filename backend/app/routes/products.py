@@ -10,10 +10,10 @@ router = APIRouter(
     tags=['products']
 )
 
-@router.get('', response_model=List[ProductListResponse], status_code=status.HTTP_200_OK)
+@router.get('', response_model=ProductListResponse, status_code=status.HTTP_200_OK)
 async def get_products(session: Session = Depends(get_db)):
     service = ProductService(session)
-    return service.get_all_products(session)
+    return service.get_all_products()
 
 @router.get('/{product_id}', response_model=ProductResponse, status_code=status.HTTP_200_OK)
 async def get_by_id(product_id: int,session: Session = Depends(get_db)):

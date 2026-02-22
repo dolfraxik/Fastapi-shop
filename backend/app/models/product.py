@@ -9,11 +9,11 @@ class Product(Base):
     product_name: Mapped[str] = mapped_column(unique=True, nullable=False)
     description: Mapped[str]
     price: Mapped[float] = mapped_column(nullable=False)
-    category_id: Mapped[int] = mapped_column(ForeignKey("categories.id"), nullable=False)
+    category_id: Mapped[int] = mapped_column(ForeignKey("categories.id_category"), nullable=False)
     image_url: Mapped[str]
     created_at: Mapped[datetime.datetime] = mapped_column(DateTime(timezone=True), default=datetime.datetime.utcnow)
     
-    category = relationship("Category", back_populates="products")
+    category: Mapped["Category"] = relationship("Category", back_populates="products")
 
     
     def summary(self):

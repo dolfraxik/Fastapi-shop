@@ -25,7 +25,7 @@ app.include_router(cart_router)
 
 @app.on_event('startup')
 def on_startup():
-    init_db
+    init_db()
 
 @app.get('/')
 def root():
